@@ -116,27 +116,15 @@ def log(log_file, message):
 
 def read_credentials_from_file(file_path):
 
-
-
     credentials = []
-
-
 
     with open(file_path, 'r') as file:
 
-
-
         for line in file:
-
-
 
             host, username, password, local_script_path, remote_script_path = line.strip().split(',')  # Adjust delimiter as needed
 
-
-
             credentials.append({'host': host, 'username': username, 'password': password,'local_script_path':local_script_path,'remote_script_path':remote_script_path})
-
-
 
     return credentials
 
@@ -145,19 +133,12 @@ def read_credentials_from_file(file_path):
 
 
 file_path = 'config.txt'
-
 log_file = 'transfer_log.txt'
-
-
-
 credentials = read_credentials_from_file(file_path)
 
 
 
 for cred in credentials:
-
-
-
     transfer_execute_download(cred['host'],cred['username'],cred['password'],cred['local_script_path'],cred['remote_script_path'],log_file)
 
 
