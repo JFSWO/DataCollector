@@ -2,7 +2,7 @@ import paramiko
 import os
 from datetime import datetime
 
-def transfer_execute_download(host, username, password, local_script_path, remote_script_path, remote_output_path, local_output_path, log_file):
+def transfer_execute_download(host, username, password, local_script_path, remote_script_path, remote_output_path, log_file):
     try:
         # Connect to the remote server via SSH
         ssh = paramiko.SSHClient()
@@ -69,9 +69,9 @@ def read_credentials_from_file(file_path):
 
         for line in file:
 
-            host, username, password, local_script_path, remote_script_path  = line.strip().split(',')  # Adjust delimiter as needed
+            host, username, password, local_script_path, remote_script_path, remote_output_path   = line.strip().split(',')  # Adjust delimiter as needed
 
-            credentials.append({'host': host, 'username': username, 'password': password,'local_script_path':local_script_path,'remote_script_path':remote_script_path})
+            credentials.append({'host': host, 'username': username, 'password': password,'local_script_path':local_script_path,'remote_script_path':remote_script_path, 'remote_output_path':remote_output_path})
 
     return credentials
 
@@ -83,7 +83,6 @@ credentials = read_credentials_from_file(file_path)
 
 for cred in credentials:
 
-    transfer_execute_download(cred['host'],cred['username'],cred['password'],cred['local_script_path'],cred['remote_script_path'],log_file)
+    transfer_execute_download(cred['host'],cred['username'],cred['password'],cred['local_script_path'],cred['remote_script_path'],cred['remote_output_path'],log_file)
 
     
-
